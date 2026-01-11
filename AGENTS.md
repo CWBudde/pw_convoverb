@@ -12,13 +12,15 @@
 
 ## Build, Test, and Development Commands
 
-- `just build` builds the C shared library and Go binary.
+- `just build` builds the C shared library and Go binary **with SIMD optimizations** (AVX2 on x86_64, NEON on ARM64).
 - `just run` builds and runs the reverb locally.
-- `just test` runs all Go tests; `just test-unit` and `just test-integration` split suites.
+- `just test` runs all Go tests with SIMD optimizations; `just test-unit` and `just test-integration` split suites.
 - `just test-coverage` generates `coverage.html`.
+- `just bench` runs benchmarks with SIMD optimizations enabled.
 - `just fmt` formats everything via `treefmt`.
 - `just lint` runs `golangci-lint` with project config.
-- Manual builds: `go generate` (build C lib) then `go build -o pw-convoverb`.
+- Manual builds: `go generate` (build C lib) then `go build -tags fft_asm -o pw-convoverb`.
+- See [docs/SIMD_OPTIMIZATIONS.md](docs/SIMD_OPTIMIZATIONS.md) for details on SIMD performance (2-3.5x speedup).
 
 ## Coding Style & Naming Conventions
 

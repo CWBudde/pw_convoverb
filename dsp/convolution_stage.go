@@ -3,8 +3,6 @@ package dsp
 import (
 	"errors"
 	"fmt"
-
-	algofft "github.com/MeKo-Christian/algo-fft"
 )
 
 // ErrInputBufferTooSmall indicates the input buffer is smaller than required.
@@ -38,7 +36,7 @@ type ConvolutionStage struct {
 	irSpectrums [][]complex64
 
 	// FFT plan for this stage
-	fftPlan *algofft.PlanRealT[float32, complex64]
+	fftPlan realFFTPlan32
 
 	// Processing buffers
 	signalFreq    []complex64 // Input signal in frequency domain
@@ -61,7 +59,7 @@ func NewConvolutionStage(irOrder int, startPos, latency, count int) (*Convolutio
 	spectrumLen := fftSizeHalf + 1 // N/2+1 for real FFT
 
 	// Create FFT plan for real-to-complex transforms
-	fftPlan, err := algofft.NewPlanReal32(fftSize)
+	fftPlan, err := newRealFFTPlan32(fftSize)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create FFT plan for size %d: %w", fftSize, err)
 	}

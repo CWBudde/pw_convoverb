@@ -14,8 +14,6 @@ import (
 
 	"pw-convoverb/pkg/irformat"
 	"pw-convoverb/pkg/resampler"
-
-	algofft "github.com/MeKo-Christian/algo-fft"
 )
 
 // IRIndexEntry is an alias for irformat.IndexEntry for external use.
@@ -50,7 +48,7 @@ type OverlapAddEngine struct {
 	blockSize int // Input block size
 
 	// FFT plan for forward and inverse transforms
-	plan *algofft.Plan[complex64]
+	plan complexFFTPlan
 
 	// Pre-computed IR in frequency domain
 	irFFT []complex64
@@ -213,7 +211,7 @@ func NewOverlapAddEngine(impulseResponse []float32, blockSize int) *OverlapAddEn
 	}
 
 	// Create FFT plan
-	plan, err := algofft.NewPlan32(fftSize)
+	plan, err := newComplexFFTPlan(fftSize)
 	if err != nil {
 		panic(fmt.Sprintf("failed to create FFT plan: %v", err))
 	}

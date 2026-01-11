@@ -1,5 +1,7 @@
-github.com/MeKo-Christian/algo-fft v0.3.0 h1:IHh0tw39k2pGem+RmRX56CzuUkNrsgmKY2SPqEDxNeo=
-github.com/MeKo-Christian/algo-fft v0.3.0/go.mod h1:kOyncsY00JWPZZrmtRo4+1AckmOzvVhTqvQP7CE1ylI=
+github.com/MeKo-Christian/algo-fft v0.5.4 h1:KcYp+pJvDdrlO0HBOF5IysOQ/jhjvKLYFZh2/Q40HXA=
+github.com/MeKo-Christian/algo-fft v0.5.4/go.mod h1:kOyncsY00JWPZZrmtRo4+1AckmOzvVhTqvQP7CE1ylI=
+github.com/MeKo-Christian/algo-fft v0.6.0 h1:lSP3h1xsvTyKk7pF1hJ6bHE5r3q1EhOm64vi2BmBqi4=
+github.com/MeKo-Christian/algo-fft v0.6.0/go.mod h1:kOyncsY00JWPZZrmtRo4+1AckmOzvVhTqvQP7CE1ylI=
 github.com/gorilla/websocket v1.5.3 h1:saDtZ6Pbx/0u+bgYQ3q96pZgCzfhKXGPqt7kZ72aNNg=
 github.com/gorilla/websocket v1.5.3/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=
 github.com/mattn/go-runewidth v0.0.9 h1:Lm995f3rfxdpd6TSmuVCHVb/QhupuXlYr8sCI/QdE+0=

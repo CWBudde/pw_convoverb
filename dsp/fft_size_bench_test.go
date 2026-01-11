@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"math"
 	"testing"
-
-	algofft "github.com/MeKo-Christian/algo-fft"
 )
 
 // BenchmarkFFTSizes benchmarks FFT operations at different sizes used by the convolution engine.
@@ -93,7 +91,7 @@ func BenchmarkStageFFTOperations(b *testing.B) {
 
 func benchmarkFFTForward(b *testing.B, size int) {
 	// Create FFT plan
-	plan, err := algofft.NewPlan32(size)
+	plan, err := newComplexFFTPlan(size)
 	if err != nil {
 		b.Fatalf("failed to create FFT plan: %v", err)
 	}
@@ -119,7 +117,7 @@ func benchmarkFFTForward(b *testing.B, size int) {
 }
 
 func benchmarkFFTInverse(b *testing.B, size int) {
-	plan, err := algofft.NewPlan32(size)
+	plan, err := newComplexFFTPlan(size)
 	if err != nil {
 		b.Fatalf("failed to create FFT plan: %v", err)
 	}
@@ -143,7 +141,7 @@ func benchmarkFFTInverse(b *testing.B, size int) {
 }
 
 func benchmarkFFTRoundtrip(b *testing.B, size int) {
-	plan, err := algofft.NewPlan32(size)
+	plan, err := newComplexFFTPlan(size)
 	if err != nil {
 		b.Fatalf("failed to create FFT plan: %v", err)
 	}
@@ -174,7 +172,7 @@ func benchmarkFFTRoundtrip(b *testing.B, size int) {
 
 func benchmarkRealFFTForward(b *testing.B, size int) {
 	// Real FFT plan
-	plan, err := algofft.NewPlanReal32(size)
+	plan, err := newRealFFTPlan32(size)
 	if err != nil {
 		b.Fatalf("failed to create real FFT plan: %v", err)
 	}
@@ -199,7 +197,7 @@ func benchmarkRealFFTForward(b *testing.B, size int) {
 }
 
 func benchmarkRealFFTInverse(b *testing.B, size int) {
-	plan, err := algofft.NewPlanReal32(size)
+	plan, err := newRealFFTPlan32(size)
 	if err != nil {
 		b.Fatalf("failed to create real FFT plan: %v", err)
 	}
@@ -229,7 +227,7 @@ func benchmarkStageFFTOps(b *testing.B, size int) {
 	// 2. Complex multiplication with IR spectrum
 	// 3. Inverse FFT to get time-domain result
 
-	plan, err := algofft.NewPlanReal32(size)
+	plan, err := newRealFFTPlan32(size)
 	if err != nil {
 		b.Fatalf("failed to create FFT plan: %v", err)
 	}
