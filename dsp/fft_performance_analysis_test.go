@@ -5,7 +5,7 @@ import (
 	"math"
 	"testing"
 
-	algofft "github.com/MeKo-Christian/algo-fft"
+	algofft "github.com/cwbudde/algo-fft"
 )
 
 // BenchmarkExtendedFFTSizes tests a wider range of FFT sizes to identify performance cliffs.

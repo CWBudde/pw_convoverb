@@ -6,7 +6,7 @@ import (
 	"math"
 	"testing"
 
-	algofft "github.com/MeKo-Christian/algo-fft"
+	algofft "github.com/cwbudde/algo-fft"
 )
 
 // BenchmarkFastPlanVsPlan compares FastPlan to the safe Plan API for complex FFT.
@@ -17,7 +17,7 @@ func BenchmarkFastPlanVsPlan(b *testing.B) {
 		b.Run(fmt.Sprintf("FastPlan_%d", size), func(b *testing.B) {
 			plan, err := algofft.NewFastPlan[complex64](size)
 			if err != nil {
-				if errors.Is(err, algofft.ErrNotImplemented) {
+				if errors.Is(err, algofft.ErrNotImplemented) || errors.Is(err, algofft.ErrInvalidLength) {
 					b.Skipf("FastPlan not available for size %d", size)
 				}
 				b.Fatalf("failed to create FastPlan: %v", err)
@@ -69,7 +69,7 @@ func BenchmarkFastPlanRealVsPlan(b *testing.B) {
 		b.Run(fmt.Sprintf("FastPlanReal32_%d", size), func(b *testing.B) {
 			plan, err := algofft.NewFastPlanReal32(size)
 			if err != nil {
-				if errors.Is(err, algofft.ErrNotImplemented) {
+				if errors.Is(err, algofft.ErrNotImplemented) || errors.Is(err, algofft.ErrInvalidLength) {
 					b.Skipf("FastPlanReal32 not available for size %d", size)
 				}
 				b.Fatalf("failed to create FastPlanReal32: %v", err)

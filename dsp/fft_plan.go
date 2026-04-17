@@ -3,7 +3,7 @@ package dsp
 import (
 	"errors"
 
-	algofft "github.com/MeKo-Christian/algo-fft"
+	algofft "github.com/cwbudde/algo-fft"
 )
 
 type complexFFTPlan interface {
